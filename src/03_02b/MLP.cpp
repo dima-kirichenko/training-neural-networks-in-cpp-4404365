@@ -36,4 +36,11 @@ MultiLayerPerceptron::MultiLayerPerceptron(std::vector<size_t> layers, double bi
     this->bias = bias;
     this->eta = eta;
 
+	for (size_t i = 0; i < layers.size(); i++){
+		std::vector<Perceptron> layer;
+		for (size_t j = 0; j < layers[i]; j++){
+			layer.push_back(Perceptron(i == 0 ? 0 : layers[i-1], bias));
+		}
+		network.push_back(layer);
+	}
 }
